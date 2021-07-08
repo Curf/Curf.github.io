@@ -84,11 +84,13 @@ Similarly, the Laplace distribution places a sharp peak of probability mass at s
 
 ---
 
-#### Exponential
+### Exponential 
+**Exponential Distribution is the probability distribution of the time between events in a Poisson point process.**
+
 <img src="https://user-images.githubusercontent.com/26121178/122447243-88e69900-cf71-11eb-9cf5-52024c95fc82.png" alt="expo" width="200"/> 
 
 
-#### Laplace
+### Laplace
 <img src="https://user-images.githubusercontent.com/26121178/122447380-aca9df00-cf71-11eb-905f-3feb78d05411.png" alt="laplace" width="200"/> 
 
 ---
