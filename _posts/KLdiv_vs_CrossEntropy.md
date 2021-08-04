@@ -8,6 +8,8 @@
 
 [1]_Goodfellow, Ian, Yoshua Bengio, and Aaron Courville. Deep learning. MIT press, 2016__
 
+[Here](https://glassboxmedicine.com/2019/12/07/connections-log-likelihood-cross-entropy-kl-divergence-logistic-regression-and-neural-networks/) is a good article about Log Likelihood, Cross-entropy, and KL-divergence - the end includes specific output scenarios.
+
 # KL-Divergence
 
 ![image](https://user-images.githubusercontent.com/26121178/128054648-dd9771f9-d34d-45a3-9f66-76e4d7437296.png)
