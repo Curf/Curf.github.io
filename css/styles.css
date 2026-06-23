@@ -179,7 +179,7 @@ img {
 }
 
 .hero h1 span {
-  color: var(--forest);
+  color: inherit;
 }
 
 .hero-sub {
@@ -537,5 +537,107 @@ img {
 
   .interests-imgs img {
     max-width: 100%;
+  }
+}
+
+/* ===== Polish layer — panel background, discrete cards, scroll reveal ===== */
+
+:root {
+  --field: #eaece9;
+  --card: #fafbfa;
+  --shadow-hover: 0 12px 28px rgba(15, 46, 29, 0.12);
+}
+
+/* Page sits on a muted field; main content floats as a white panel */
+body {
+  background: var(--field);
+}
+
+.main {
+  margin: 1.5rem 1.5rem 1.5rem calc(var(--sidebar-width) + 1.5rem);
+  min-height: auto;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: 0 1px 3px rgba(15, 46, 29, 0.06);
+  overflow: hidden;
+}
+
+.section {
+  padding: 2.75rem 3rem;
+}
+
+/* Content blocks become discrete, liftable cards */
+.entry,
+.skills-group,
+.pub-entry {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-left: 3px solid transparent;
+  border-radius: 12px;
+  padding: 1.1rem 1.3rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.entry:hover,
+.skills-group:hover,
+.pub-entry:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+  border-left-color: var(--burgundy);
+}
+
+.entry { margin-bottom: 1rem; }
+.skills-group { margin-bottom: 1rem; }
+
+/* Drop the old inline list marker now that pub entries are cards */
+.pub-entry { padding-left: 1.3rem; }
+.pub-entry::before { content: none; }
+
+/* Project Papers: collapsed into a single card, shown as a list */
+.paper-list { list-style: none; padding: 0; margin: 0; font-size: 0.9rem; color: var(--text-light); }
+.paper-list li { position: relative; padding-left: 1.1rem; margin-bottom: 0.5rem; line-height: 1.55; }
+.paper-list li:last-child { margin-bottom: 0; }
+.paper-list li::before { content: "\2014"; position: absolute; left: 0; color: var(--burgundy); opacity: 0.5; }
+
+/* Tags read a touch brighter on the card, and lift on hover */
+.skill-tag { background: #ffffff; }
+.skill-tag:hover { transform: translateY(-2px); }
+
+/* Interest images get the same subtle lift */
+.interests-imgs img {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.interests-imgs img:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* Scroll-reveal: fade + slide up as elements enter the viewport */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  will-change: opacity, transform;
+}
+.reveal.in {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .main {
+    margin: 1rem;
+  }
+  .section {
+    padding: 1.75rem 1.25rem;
   }
 }

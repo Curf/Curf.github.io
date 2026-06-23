@@ -55,3 +55,50 @@
   window.addEventListener("scroll", updateActiveLink);
   updateActiveLink();
 })();
+
+// Scroll-reveal: fade + slide up content as it enters the viewport
+(function () {
+  var selector =
+    ".hero > *, .section-title, .entry, .skills-group, .pub-entry, .interests-text, .interests-imgs, .award-item";
+  var targets = Array.prototype.slice.call(document.querySelectorAll(selector));
+  if (!targets.length) return;
+
+  targets.forEach(function (el) {
+    el.classList.add("reveal");
+  });
+
+  var reduced =
+    window.matchMedia &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (reduced || !("IntersectionObserver" in window)) {
+    targets.forEach(function (el) {
+      el.classList.add("in");
+    });
+    return;
+  }
+
+  // Light stagger within each section so cards cascade rather than pop at once
+  document.querySelectorAll(".section").forEach(function (section) {
+    var kids = section.querySelectorAll(".reveal");
+    kids.forEach(function (el, i) {
+      el.style.transitionDelay = Math.min(i, 6) * 0.05 + "s";
+    });
+  });
+
+  var io = new IntersectionObserver(
+    function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in");
+          io.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.1, rootMargin: "0px 0px -8% 0px" }
+  );
+
+  targets.forEach(function (el) {
+    io.observe(el);
+  });
+})();
