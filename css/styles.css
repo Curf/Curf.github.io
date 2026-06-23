@@ -439,8 +439,9 @@ img {
 }
 
 .interests-imgs img {
-  width: calc(50% - 0.5rem);
-  min-width: 200px;
+  width: auto;
+  max-width: 100%;
+  max-height: 244px;
   border-radius: 8px;
   border: 1px solid var(--border);
 }
@@ -535,6 +536,6 @@ img {
   }
 
   .interests-imgs img {
-    width: 100%;
+    max-width: 100%;
   }
 }
