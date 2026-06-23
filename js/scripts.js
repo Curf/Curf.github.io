@@ -95,10 +95,25 @@
         }
       });
     },
-    { threshold: 0.1, rootMargin: "0px 0px -8% 0px" }
+    { threshold: 0.08 }
   );
 
   targets.forEach(function (el) {
     io.observe(el);
   });
+
+  // Safety net: reveal anything already within the viewport. Guards against
+  // elements pinned in the bottom strip that an observer can otherwise miss.
+  function sweep() {
+    targets.forEach(function (el) {
+      if (el.classList.contains("in")) return;
+      var r = el.getBoundingClientRect();
+      if (r.top < window.innerHeight && r.bottom > 0) {
+        el.classList.add("in");
+        io.unobserve(el);
+      }
+    });
+  }
+  window.addEventListener("load", sweep);
+  window.addEventListener("scroll", sweep, { passive: true });
 })();
